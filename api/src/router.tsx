@@ -1,26 +1,30 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Home from './pages/Home';
-import Pokedex from './pages/Pokedex';
-import TrainingDiary from './pages/TrainingDiary';
+import Home from './Home/page';
+import BookCatalog from './BookCatalog/page';
+import BorrowRecords from './BorrowRecords/page';
+import Login from './Login/page';
+import { AuthGuard } from './components/AuthGuard';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      { path: '/', element: <Home /> },
       {
-        path: '/',
-        element: <Home />,
+        path: '/Login',
+        element: <AuthGuard><Login /></AuthGuard>,
       },
       {
-        path: '/pokedex',
-        element: <Pokedex />,
+        path: '/catalog',
+        element: <AuthGuard><BookCatalog /></AuthGuard>,
       },
       {
-        path: '/diary',
-        element: <TrainingDiary />,
+        path: '/records',
+        element: <AuthGuard><BorrowRecords /></AuthGuard>,
       },
+
     ],
   },
 ]);
