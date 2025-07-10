@@ -15,6 +15,7 @@ const App = () => {
             <li><Link to="/catalog">图书目录</Link></li>
             <li><Link to="/records">借阅记录</Link></li>
             <li><Link to="/readers">读者管理</Link></li>
+            <li><Link to="/return">图书归还系统</Link></li>
             
           </ul>
         </div>

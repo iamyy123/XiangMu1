@@ -6,6 +6,7 @@ import BorrowRecords from './BorrowRecords/page';
 import Login from './Login/page';
 import ReaderManagement from './ReaderManagement/page';
 import { AuthGuard } from './components/AuthGuard';
+import BookReturn from './BookReturn/page';
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: '/readers',
         element: <AuthGuard><ReaderManagement /></AuthGuard>,
+      },
+      {
+        path: '/return',
+        element: <AuthGuard><BookReturn /></AuthGuard>,
       },
 
     ],
