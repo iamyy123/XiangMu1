@@ -14,7 +14,7 @@ export interface Book {
 }
 
 export interface BorrowRecord {
-  id: number;
+  id: number;         // 保持原有类型：ID 为 number
   bookId: number;
   bookTitle: string;
   borrowerName: string;
@@ -49,6 +49,21 @@ export const createBorrowRecord = async (
   return response.data;
 };
 
+// ===================== 新增代码（归还接口） ===================== //
+/**
+ * 更新借阅记录（局部更新，如标记为已归还）
+ * @param id 借阅记录 ID（与 BorrowRecord.id 类型一致：number）
+ * @param data 要更新的字段（如 { returned: true }）
+ */
+export const updateBorrowRecord = async (
+  id: number,
+  data: Partial<BorrowRecord>
+): Promise<BorrowRecord> => {
+  const response = await libraryApi.patch(`/borrow-records/${id}`, data);
+  return response.data;
+};
+// ===================== 新增代码结束 ===================== //
+
 export interface User {
   id: number;
   username: string;
@@ -56,22 +71,15 @@ export interface User {
 }
 
 export const login = async (username: string, password: string): Promise<User> => {
-  // 确保已添加以下测试用户数据
   const users = [
     { id: 1, username: "admin", password: "admin123", role: "admin" },
     { id: 2, username: "user", password: "user123", role: "user" }
   ];
-
-  // 模拟API延迟
   await new Promise(resolve => setTimeout(resolve, 500));
-
   const user = users.find(u => u.username === username && u.password === password);
-  
   if (!user) {
     throw new Error("用户名或密码错误");
   }
-
-  // 返回用户信息（不包含密码）
   return { id: user.id, username: user.username, role: user.role };
 };
 
