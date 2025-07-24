@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Home from './Home/page';
+import Home from './Luohongyu/page';
 import BookCatalog from './BookCatalog/page';
-import BorrowRecords from './BorrowRecords/page';
-import Login from './Login/page';
+import BorrowRecords from './Luohongyu2/page';
+import Login from './Luohongyu1/page';
 import ReaderManagement from './ReaderManagement/page';
 import { AuthGuard } from './components/AuthGuard';
 import BookReturn from './BookReturn/page';
